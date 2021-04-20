@@ -11,24 +11,24 @@
         style="@style/Widget.AppCompat.SeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:indeterminate="false"
         android:max="100"
         android:progress="0"
+        app:layout_constraintBottom_toTopOf="@+id/til_final"
         app:layout_constraintEnd_toEndOf="@+id/til_final"
-        app:layout_constraintStart_toStartOf="@+id/til_final"
-        app:layout_constraintTop_toBottomOf="@+id/til_final" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/til_final" />
 
     <TextView
         android:id="@+id/textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/hello_first_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_vize" />
+        tools:layout_editor_absoluteY="507dp" />
 
     <Button
         android:id="@+id/button_first"
@@ -43,41 +43,45 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_vize"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        app:errorEnabled="false"
         app:hintEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/til_final"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/vizeNotu"
             android:inputType="numberSigned"
+            android:maxLength="3"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_final"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
+        app:errorEnabled="false"
         app:layout_constraintBottom_toBottomOf="@+id/til_vize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/til_vize"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:layout_constraintStart_toEndOf="@+id/til_vize">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/finalNotu"
             android:inputType="numberSigned"
+            android:maxLength="3"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,11 +89,12 @@
         android:id="@+id/sb_vize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:max="100"
         android:progress="0"
+        app:layout_constraintBottom_toTopOf="@+id/til_vize"
         app:layout_constraintEnd_toEndOf="@+id/til_vize"
-        app:layout_constraintStart_toStartOf="@+id/til_vize"
-        app:layout_constraintTop_toBottomOf="@+id/til_vize" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/til_vize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

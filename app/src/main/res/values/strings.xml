@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="vizeNotu">Vize Notu</string>
     <string name="finalNotu">Final Notu</string>
+    <string name="GradeOutOfBorder">Enter a grade between 0-100.</string>
 </resources>
