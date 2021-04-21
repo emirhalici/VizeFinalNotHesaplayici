@@ -137,25 +137,25 @@ public class FirstFragment extends Fragment {
     void getAndSetGrades(SeekBar sbMidterm, SeekBar sbFinal, TextView textView) {
         int midtermGrade = sbMidterm.getProgress();
         int finalGrade = sbFinal.getProgress();
-        int grade = calculateGrade(midtermGrade, finalGrade, MIDTERM_MULTIPLIER, FINAL_MULTIPLIER);
+        float grade = calculateGrade(midtermGrade, finalGrade, MIDTERM_MULTIPLIER, FINAL_MULTIPLIER);
         String gradeLetter = getLetterGrade(grade);
-        int gradeToA = gradeNeededForA(midtermGrade, MIDTERM_MULTIPLIER, FINAL_MULTIPLIER);
+        float gradeToA = gradeNeededForA(midtermGrade, MIDTERM_MULTIPLIER, FINAL_MULTIPLIER);
         setGradeToView(grade, finalGrade, gradeToA, gradeLetter, textView);
     }
 
-    void setGradeToView(int grade, int finalGrade, int gradeForA, String letterGrade, TextView textView) {
-        String tv_string = String.format("Grade: %d\nGrade letter: %s\n", grade, letterGrade);
-        if (finalGrade>=gradeForA) {
+    void setGradeToView(float grade, int finalGrade, float gradeForA, String letterGrade, TextView textView) {
+        String tv_string = String.format("Grade: %.2f\nGrade letter: %s\n", grade, letterGrade);
+        if (finalGrade>gradeForA) {
             tv_string = tv_string + "Congrats on that A.";
         } else if (gradeForA>100) {
             tv_string = tv_string + "Getting an A is impossible at this moment.";
         } else if (gradeForA>0) {
-            tv_string = tv_string + String.format("To get an A, final grade should be at least: %d\n", gradeForA);
+            tv_string = tv_string + String.format("To get an A, final grade should be at least: %.2f\n", gradeForA);
         }
         textView.setText(tv_string);
     }
 
-    String getLetterGrade(int grade) {
+    String getLetterGrade(float grade) {
         String letterGrade;
         if (grade>=100) {
             letterGrade = "A+";
@@ -179,13 +179,14 @@ public class FirstFragment extends Fragment {
         return letterGrade;
     }
 
-    int gradeNeededForA(int midtermGrade, int midtermMultiplier, int finalMultiplier) {
+    float gradeNeededForA(int midtermGrade, int midtermMultiplier, int finalMultiplier) {
         float gradeNeededF = ( ( (float) 90 -  (float) midtermGrade * midtermMultiplier / 100 ) / ( (float) finalMultiplier / 100 ));
-        return (int) gradeNeededF;
+        return gradeNeededF;
     }
 
-    int calculateGrade(int midtermGrade, int finalGrade, int midtermMultiplier, int finalMultiplier) {
-        return midtermGrade * midtermMultiplier / 100 + finalGrade * finalMultiplier / 100;
+    float calculateGrade(int midtermGrade, int finalGrade, int midtermMultiplier, int finalMultiplier) {
+        float returnValue = (float) (midtermGrade * midtermMultiplier / 100 ) + (float) (finalGrade * finalMultiplier / 100);
+        return returnValue;
     }
 
 }
