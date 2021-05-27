@@ -102,4 +102,16 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/til_vize" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.5"
+        android:fontFamily="@font/source_sans_pro"
+        android:text="@string/disclaimer"
+        app:layout_constraintBottom_toTopOf="@+id/sb_vize"
+        app:layout_constraintEnd_toEndOf="@+id/sb_final"
+        app:layout_constraintStart_toStartOf="@+id/sb_vize" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
