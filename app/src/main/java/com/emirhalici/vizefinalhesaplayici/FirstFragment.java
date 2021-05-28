@@ -1,10 +1,12 @@
 package com.emirhalici.vizefinalhesaplayici;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.le.ScanSettings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
 
 public class FirstFragment extends Fragment {
 
@@ -49,8 +53,9 @@ public class FirstFragment extends Fragment {
         sbVize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tilVize.getEditText().setText(String.valueOf(progress));
+                Objects.requireNonNull(tilVize.getEditText()).setText(String.valueOf(progress));
                 getAndSetGrades(sbVize, sbFinal, tv);
+                Log.e("vize seekbar", "i've been changed to value " + progress);
             }
 
             @Override
@@ -66,8 +71,9 @@ public class FirstFragment extends Fragment {
         sbFinal.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tilFinal.getEditText().setText(String.valueOf(progress));
+                Objects.requireNonNull(tilFinal.getEditText()).setText(String.valueOf(progress));
                 getAndSetGrades(sbVize, sbFinal, tv);
+                Log.e("final seekbar", "i've been changed to value " + progress);
             }
 
             @Override
@@ -80,7 +86,7 @@ public class FirstFragment extends Fragment {
 
             }
         });
-        tilVize.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(tilVize.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -96,6 +102,7 @@ public class FirstFragment extends Fragment {
                 if (!isErrorEnabled) {
                     sbVize.setProgress(Integer.parseInt(s.toString()));
                     getAndSetGrades(sbVize, sbFinal, tv);
+                    Log.e("vize textbox", "i've been changed to value " + s);
                 } else {
                     tv.setText("");
                 }
@@ -106,7 +113,7 @@ public class FirstFragment extends Fragment {
 
             }
         });
-        tilFinal.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(tilFinal.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -122,6 +129,7 @@ public class FirstFragment extends Fragment {
                 if (!isErrorEnabled) {
                     sbFinal.setProgress(Integer.parseInt(s.toString()));
                     getAndSetGrades(sbVize, sbFinal, tv);
+                    Log.e("final textbox", "i've been changed to value " + s);
                 } else {
                     tv.setText("");
                 }
@@ -143,6 +151,7 @@ public class FirstFragment extends Fragment {
         setGradeToView(grade, finalGrade, gradeToA, gradeLetter, textView);
     }
 
+    @SuppressLint("DefaultLocale")
     void setGradeToView(float grade, int finalGrade, float gradeForA, String letterGrade, TextView textView) {
         String tv_string = String.format("Grade: %.2f\nGrade letter: %s\n", grade, letterGrade);
         if (finalGrade>gradeForA) {
@@ -180,13 +189,13 @@ public class FirstFragment extends Fragment {
     }
 
     float gradeNeededForA(int midtermGrade, int midtermMultiplier, int finalMultiplier) {
-        float gradeNeededF = ( ( (float) 90 -  (float) midtermGrade * midtermMultiplier / 100 ) / ( (float) finalMultiplier / 100 ));
-        return gradeNeededF;
+        return ( ( (float) 90 -  (float) midtermGrade * midtermMultiplier / 100 ) / ( (float) finalMultiplier / 100 ));
     }
 
     float calculateGrade(int midtermGrade, int finalGrade, int midtermMultiplier, int finalMultiplier) {
-        float returnValue = (float) (midtermGrade * midtermMultiplier / 100 ) + (float) (finalGrade * finalMultiplier / 100);
-        return returnValue;
+        float returnGrade = (float) midtermGrade * midtermMultiplier / 100 + finalGrade * finalMultiplier / 100;
+        Log.e("calculateGrade", "calculated grade: " + returnGrade);
+        return returnGrade;
     }
 
 }

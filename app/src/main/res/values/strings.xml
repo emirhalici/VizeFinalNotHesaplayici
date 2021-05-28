@@ -11,5 +11,5 @@
     <string name="vizeNotu">Vize Notu</string>
     <string name="finalNotu">Final Notu</string>
     <string name="GradeOutOfBorder">Enter a grade between 0–100.</string>
-    <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (midterm*0.3+final*0.8) is used for calculating grades. It may not calculate grades correctly.</string>
+    <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (midterm*0.3+final*0.8) is used for calculating grades. It MAY or MAY NOT calculate grades correctly.</string>
 </resources>
