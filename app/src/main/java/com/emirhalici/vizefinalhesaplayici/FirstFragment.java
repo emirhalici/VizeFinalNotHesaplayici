@@ -151,7 +151,6 @@ public class FirstFragment extends Fragment {
         setGradeToView(grade, finalGrade, gradeToA, gradeLetter, textView);
     }
 
-    @SuppressLint("DefaultLocale")
     void setGradeToView(float grade, int finalGrade, float gradeForA, String letterGrade, TextView textView) {
         String tv_string = String.format("Grade: %.2f\nGrade letter: %s\n", grade, letterGrade);
         if (finalGrade>gradeForA) {
