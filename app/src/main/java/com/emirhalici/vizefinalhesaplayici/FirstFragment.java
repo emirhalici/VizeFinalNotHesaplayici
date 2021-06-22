@@ -53,9 +53,12 @@ public class FirstFragment extends Fragment {
         sbVize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Objects.requireNonNull(tilVize.getEditText()).setText(String.valueOf(progress));
-                getAndSetGrades(sbVize, sbFinal, tv);
-                Log.e("vize seekbar", "i've been changed to value " + progress);
+                if (fromUser) {
+                    Objects.requireNonNull(tilVize.getEditText()).setText(String.valueOf(progress));
+                    getAndSetGrades(sbVize, sbFinal, tv);
+                    Log.e("vize seekbar", "i've been changed to value " + progress);
+                }
+
             }
 
             @Override
@@ -71,9 +74,12 @@ public class FirstFragment extends Fragment {
         sbFinal.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Objects.requireNonNull(tilFinal.getEditText()).setText(String.valueOf(progress));
-                getAndSetGrades(sbVize, sbFinal, tv);
-                Log.e("final seekbar", "i've been changed to value " + progress);
+                if (fromUser) {
+                    Objects.requireNonNull(tilFinal.getEditText()).setText(String.valueOf(progress));
+                    getAndSetGrades(sbVize, sbFinal, tv);
+                    Log.e("final seekbar", "i've been changed to value " + progress);
+                }
+
             }
 
             @Override
