@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VizeFinalHesaplayici</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="first_fragment_label">VizeFinalHesaplayici</string>
+    <string name="second_fragment_label">Ayarlar</string>
+    <string name="next">İlerle</string>
+    <string name="previous">Geri Git</string>
+    <string name="tvInitialText">Lütfen hesaplama için notlarınızı girin.</string>
+    <string name="vizeNotu">Vize Notu</string>
+    <string name="finalNotu">Final Notu</string>
+    <string name="vizeCarpani">Vize Çarpanı</string>
+    <string name="finalCarpani">Final Çarpanı</string>
+    <string name="MultiplierOutOfBorder">Lütfen 0–100 arasında bir sayı girin.</string>
+    <string name="GradeOutOfBorder">Lütfen 0–100 arasında bir not girin.</string>
+    <string name="MultiplierSetToast">Çarpan başarıyla kaydedildi.</string>
+    <string name="MultiplierSaveError">Lütfen geçerli sayılar girin.</string>
+    <string name="invalidNumberError">Lütfen geçerli bir sayı girin.</string>
+    <string name="disclaimer">UYARI: Bu uygulama eğitim amaçlı yapılmıştır. Notların hesabı için basit matematik (varsayılan: vize*0,3+fınal*0,8) uygulanmaktadır. Hesaplama doğru olmayabilir.</string>
+    <string name="saveButton">kaydet düğmesi</string>
+    <string name="backButton">geri düğmesi</string>
+    <string name="gradeDisplay">Not: %1$.2f\nHarf Notu: %2$s\n</string>
+    <string name="gradeA">Tebrikler, A aldınız.</string>
+    <string name="gradeANotPossible">A almak şu anda mümkün değil.</string>
+    <string name="gradeNeededForA">A almak için final notunuz en az %1$.2f olmalı.</string>
+</resources>

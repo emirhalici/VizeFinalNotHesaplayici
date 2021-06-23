@@ -21,8 +21,6 @@ import java.util.Objects;
 
 public class FirstFragment extends Fragment {
 
-    int MIDTERM_MULTIPLIER = 30;
-    int FINAL_MULTIPLIER = 80;
 
     @Override
     public View onCreateView(
@@ -157,13 +155,13 @@ public class FirstFragment extends Fragment {
     }
 
     void setGradeToView(float grade, int finalGrade, float gradeForA, String letterGrade, TextView textView) {
-        String tv_string = String.format("Grade: %.2f\nGrade letter: %s\n", grade, letterGrade);
-        if (finalGrade>gradeForA) {
-            tv_string = tv_string + "Congrats on that A.";
+        String tv_string = getString(R.string.gradeDisplay, grade, letterGrade);
+        if (finalGrade>=gradeForA) {
+            tv_string += getString(R.string.gradeA);
         } else if (gradeForA>100) {
-            tv_string = tv_string + "Getting an A is impossible at this moment.";
+            tv_string += getString(R.string.gradeANotPossible);
         } else if (gradeForA>0) {
-            tv_string = tv_string + String.format("To get an A, final grade should be at least: %.2f\n", gradeForA);
+            tv_string += getString(R.string.gradeNeededForA, gradeForA);
         }
         textView.setText(tv_string);
     }
@@ -193,15 +191,15 @@ public class FirstFragment extends Fragment {
     }
 
     float gradeNeededForA(int midtermGrade) {
-        int midtermMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("vizeMultiplier", 30);
-        int finalMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("finalMultiplier", 80);
+        int midtermMultiplier = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt("vizeMultiplier", 30);
+        int finalMultiplier = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt("finalMultiplier", 80);
         return ( ( (float) 90 -  (float) midtermGrade * midtermMultiplier / 100 ) / ( (float) finalMultiplier / 100 ));
     }
 
     float calculateGrade(int midtermGrade, int finalGrade) {
         int midtermMultiplier = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt("vizeMultiplier", 30);
         int finalMultiplier = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt("finalMultiplier", 80);
-        float returnGrade = (float) midtermGrade * midtermMultiplier / 100 + finalGrade * finalMultiplier / 100;
+        float returnGrade = (float) midtermGrade * midtermMultiplier / 100 + (float) finalGrade * finalMultiplier / 100;
         Log.e("calculateGrade", "calculated grade: " + returnGrade);
         return returnGrade;
     }

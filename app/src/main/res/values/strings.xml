@@ -19,4 +19,8 @@
     <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (default: midterm*0.3+final*0.8) is used for calculating grades. It MAY or MAY NOT calculate grades correctly.</string>
     <string name="saveButton">save button</string>
     <string name="backButton">back button</string>
+    <string name="gradeDisplay">Grade: %1$.2f\nGrade letter: %2$s\n</string>
+    <string name="gradeA">Congrats on that A.</string>
+    <string name="gradeANotPossible">Getting an A is impossible at this moment.</string>
+    <string name="gradeNeededForA">To get an A, final grade should be at least: %1$.2f\n</string>
 </resources>
