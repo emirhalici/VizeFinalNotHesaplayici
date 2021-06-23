@@ -20,6 +20,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class mBottomSheetDialog extends BottomSheetDialogFragment {
     String VIZEMULTIPLIER = "vizeMultiplier";
     String FINALMULTIPLIER = "finalMultiplier";
@@ -28,15 +30,15 @@ public class mBottomSheetDialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
 
         int vizeM = sharedPref.getInt(VIZEMULTIPLIER, 30);
         int finalM = sharedPref.getInt(FINALMULTIPLIER, 80);
         TextInputLayout vizemu = v.findViewById(R.id.vizemult);
         TextInputLayout finalmu = v.findViewById(R.id.finalmult);
 
-        vizemu.getEditText().setText(String.valueOf(vizeM));
-        finalmu.getEditText().setText(String.valueOf(finalM));
+        Objects.requireNonNull(vizemu.getEditText()).setText(String.valueOf(vizeM));
+        Objects.requireNonNull(finalmu.getEditText()).setText(String.valueOf(finalM));
         return v;
     }
 
@@ -51,10 +53,10 @@ public class mBottomSheetDialog extends BottomSheetDialogFragment {
         tilvize.setError(null);
         tilfinal.setError(null);
 
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
 
 
-        tilvize.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(tilvize.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -73,7 +75,7 @@ public class mBottomSheetDialog extends BottomSheetDialogFragment {
             }
         });
 
-        tilfinal.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(tilfinal.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

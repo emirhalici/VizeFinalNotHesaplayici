@@ -11,7 +11,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="save button"
+        android:contentDescription="@string/saveButton"
         android:focusable="true"
         android:src="@drawable/ic_save"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -19,6 +19,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class SecondFragment extends Fragment {
 
     @Override
@@ -42,12 +44,12 @@ public class SecondFragment extends Fragment {
         TextInputLayout tilvize = view.findViewById(R.id.vizemult);
         TextInputLayout tilfinal = view.findViewById(R.id.finalmult);
 
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         int vizeM = sharedPref.getInt(VIZEMULTIPLIER, 30);
         int finalM = sharedPref.getInt(FINALMULTIPLIER, 80);
 
-        tilvize.getEditText().setText(String.valueOf(vizeM));
-        tilfinal.getEditText().setText(String.valueOf(finalM));
+        Objects.requireNonNull(tilvize.getEditText()).setText(String.valueOf(vizeM));
+        Objects.requireNonNull(tilfinal.getEditText()).setText(String.valueOf(finalM));
 
         tilvize.setError(null);
         tilfinal.setError(null);

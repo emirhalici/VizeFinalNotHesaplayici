@@ -11,10 +11,12 @@
     <string name="finalNotu">Final Grade</string>
     <string name="vizeCarpani">Midterm Multiplier</string>
     <string name="finalCarpani">Final Multiplier</string>
-    <string name="MultiplierOutOfBorder">Please enter a number between 0-100.</string>
+    <string name="MultiplierOutOfBorder">Please enter a number between 0–100.</string>
     <string name="GradeOutOfBorder">Enter a grade between 0–100.</string>
     <string name="MultiplierSetToast">Multiplier is set successfully.</string>
     <string name="MultiplierSaveError">Please enter valid numbers.</string>
     <string name="invalidNumberError">Please enter a valid number.</string>
     <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (default: midterm*0.3+final*0.8) is used for calculating grades. It MAY or MAY NOT calculate grades correctly.</string>
+    <string name="saveButton">save button</string>
+    <string name="backButton">back button</string>
 </resources>
