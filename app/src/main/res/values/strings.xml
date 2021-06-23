@@ -2,14 +2,19 @@
     <string name="app_name">VizeFinalHesaplayici</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">VizeFinalHesaplayici</string>
+    <string name="second_fragment_label">Settings</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="tvInitialText">Please insert your grades to calculate.</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="vizeNotu">Vize Notu</string>
-    <string name="finalNotu">Final Notu</string>
+    <string name="vizeNotu">Midterm Grade</string>
+    <string name="finalNotu">Final Grade</string>
+    <string name="vizeCarpani">Midterm Multiplier</string>
+    <string name="finalCarpani">Final Multiplier</string>
+    <string name="MultiplierOutOfBorder">Please enter a number between 0-100.</string>
     <string name="GradeOutOfBorder">Enter a grade between 0–100.</string>
-    <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (midterm*0.3+final*0.8) is used for calculating grades. It MAY or MAY NOT calculate grades correctly.</string>
+    <string name="MultiplierSetToast">Multiplier is set successfully.</string>
+    <string name="MultiplierSaveError">Please enter valid numbers.</string>
+    <string name="invalidNumberError">Please enter a valid number.</string>
+    <string name="disclaimer">DISCLAIMER: This app is only for educational purposes. Basic math (default: midterm*0.3+final*0.8) is used for calculating grades. It MAY or MAY NOT calculate grades correctly.</string>
 </resources>

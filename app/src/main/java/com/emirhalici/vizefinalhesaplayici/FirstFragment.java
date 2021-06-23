@@ -2,7 +2,9 @@ package com.emirhalici.vizefinalhesaplayici;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.le.ScanSettings;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,8 +40,9 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_first).setOnClickListener(view1 -> NavHostFragment.findNavController(FirstFragment.this)
+        view.findViewById(R.id.fab_settings).setOnClickListener(view1 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SecondFragment));
+
 
         TextInputLayout tilVize = view.findViewById(R.id.til_vize);
         TextInputLayout tilFinal = view.findViewById(R.id.til_final);
@@ -194,10 +197,14 @@ public class FirstFragment extends Fragment {
     }
 
     float gradeNeededForA(int midtermGrade, int midtermMultiplier, int finalMultiplier) {
+        midtermMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("vizeMultiplier", 30);
+        finalMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("finalMultiplier", 80);
         return ( ( (float) 90 -  (float) midtermGrade * midtermMultiplier / 100 ) / ( (float) finalMultiplier / 100 ));
     }
 
     float calculateGrade(int midtermGrade, int finalGrade, int midtermMultiplier, int finalMultiplier) {
+        midtermMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("vizeMultiplier", 30);
+        finalMultiplier = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("finalMultiplier", 80);
         float returnGrade = (float) midtermGrade * midtermMultiplier / 100 + finalGrade * finalMultiplier / 100;
         Log.e("calculateGrade", "calculated grade: " + returnGrade);
         return returnGrade;

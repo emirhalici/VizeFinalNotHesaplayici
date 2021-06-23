@@ -13,44 +13,45 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.Nullable;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class SecondFragment extends Fragment {
+public class mBottomSheetDialog extends BottomSheetDialogFragment {
+    String VIZEMULTIPLIER = "vizeMultiplier";
+    String FINALMULTIPLIER = "finalMultiplier";
 
+    @Nullable
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        int vizeM = sharedPref.getInt(VIZEMULTIPLIER, 30);
+        int finalM = sharedPref.getInt(FINALMULTIPLIER, 80);
+        TextInputLayout vizemu = v.findViewById(R.id.vizemult);
+        TextInputLayout finalmu = v.findViewById(R.id.finalmult);
+
+        vizemu.getEditText().setText(String.valueOf(vizeM));
+        finalmu.getEditText().setText(String.valueOf(finalM));
+        return v;
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.fab_back).setOnClickListener(view1 -> NavHostFragment.findNavController(SecondFragment.this)
-                .navigate(R.id.action_SecondFragment_to_FirstFragment));
 
-
-        String VIZEMULTIPLIER = "vizeMultiplier";
-        String FINALMULTIPLIER = "finalMultiplier";
-
+        FloatingActionButton saveButton = view.findViewById(R.id.fab_save2);
         TextInputLayout tilvize = view.findViewById(R.id.vizemult);
         TextInputLayout tilfinal = view.findViewById(R.id.finalmult);
 
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        int vizeM = sharedPref.getInt(VIZEMULTIPLIER, 30);
-        int finalM = sharedPref.getInt(FINALMULTIPLIER, 80);
-
-        tilvize.getEditText().setText(String.valueOf(vizeM));
-        tilfinal.getEditText().setText(String.valueOf(finalM));
-
         tilvize.setError(null);
         tilfinal.setError(null);
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
 
         tilvize.getEditText().addTextChangedListener(new TextWatcher() {
@@ -92,33 +93,10 @@ public class SecondFragment extends Fragment {
         });
 
 
-
-        FloatingActionButton fab = view.findViewById(R.id.fab_save);
-
-        fab.setOnClickListener(v -> {
+        saveButton.setOnClickListener(v -> {
+            // save it
             SharedPreferences.Editor editor = sharedPref.edit();
             boolean fail = TextUtils.isEmpty(tilvize.getError()) && TextUtils.isEmpty(tilfinal.getError());
-
-            Log.e("fab onclicklistener", "bool fail " + fail);
-            /*try {
-                tilvize.setErrorEnabled(false);
-                int vizemult = Integer.parseInt(tilvize.getEditText().getText().toString());
-                editor.putInt(VIZEMULTIPLIER, vizemult);
-            } catch (NumberFormatException e) {
-                tilvize.setError("Please enter a valid number");
-                tilvize.setErrorEnabled(true);
-                fail = true;
-            }
-
-            try {
-                tilfinal.setErrorEnabled(false);
-                int finalmult = Integer.parseInt(tilfinal.getEditText().getText().toString());
-                editor.putInt(FINALMULTIPLIER, finalmult);
-            } catch (NumberFormatException e) {
-                tilfinal.setError("Please enter a valid number");
-                tilfinal.setErrorEnabled(true);
-                fail = true;
-            }*/
             if (fail) {
                 int vizemult = Integer.parseInt(tilvize.getEditText().getText().toString());
                 editor.putInt(VIZEMULTIPLIER, vizemult);
@@ -127,9 +105,7 @@ public class SecondFragment extends Fragment {
                 editor.apply();
                 Log.e("fab save", "saved succesfully");
                 Toast.makeText(getContext(),getString(R.string.MultiplierSetToast), Toast.LENGTH_SHORT).show();
-//                getActivity().getSupportFragmentManager().popBackStack();
-                NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
-
+                dismiss();
             } else {
                 Toast.makeText(getContext(),getString(R.string.MultiplierSaveError), Toast.LENGTH_SHORT).show();
             }
